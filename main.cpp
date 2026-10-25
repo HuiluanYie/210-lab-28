@@ -25,6 +25,7 @@ void year_later(list<Goat>&);
 // helper function
 int add_age(int, const Goat&);
 Goat year_older(Goat);
+bool too_old(const Goat&); 
 
 
 int main() {
@@ -181,6 +182,11 @@ double average_age(const list<Goat>& trip)
 void year_later(list<Goat>& trip)
 {
     transform(trip.begin(), trip.end(), trip.begin(), year_older);
+    trip.erase(remove_if(trip.begin(), trip.end(), too_old), trip.end());
+    //// Remove villagers with a friendship level below 5
+    //villagers.erase(remove_if(villagers.begin(), villagers.end(), 
+    //  [](const Villager& v){ return v.friendshipLevel < 5; }), villagers.end());
+
     cout << "\nEvery goat aged one year.\n";
 }
 
@@ -192,13 +198,16 @@ int add_age(int sum, const Goat& goat)
 
 Goat year_older(Goat goat)
 {
-    if (goat.get_age() < MAX_AGE)
-    {
-        goat.set_age(goat.get_age() + 1);
-    }
+    goat.set_age(goat.get_age() + 1);
     return goat;
 }
 
+bool too_old(const Goat& g)
+{
+    return g.get_age() > 20;
+}
+
+//[](const Villager& v){ return v.friendshipLevel < 5; }
 
 // transform(villagers.begin(), villagers.end(), villagers.begin(), [](Villager& v) { v.friendshipLevel += 1; return v; });
 // [](Villager& v) { v.friendshipLevel += 1; return v; }
