@@ -22,7 +22,7 @@ void sort_goats(list<Goat>&);
 void reverse_goats(list<Goat>&);
 double average_age(const list<Goat>&);
 void year_later(list<Goat>&);
-void shuffle_trip(list<Goat> trip);
+void unique_name(list<Goat>&);
 
 // helper function
 int add_age(int, const Goat&);
@@ -91,7 +91,7 @@ int main() {
                 year_later(trip);
                 break;
             case 8:
-                year_later(trip);
+                
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -193,10 +193,15 @@ void year_later(list<Goat>& trip)
     cout << "Removed any goat that's too old.\n";
 }
 
+void unique_name(list<Goat>& trip)
+{
+    trip.erase(unique(trip.begin(), trip.end(), same_name), trip.end());
+}
+// Remove duplicate friendship levels (assuming sorted)
+//    villagers.erase(unique(villagers.begin(), villagers.end(), 
+//      [](const Villager& a, const Villager& b) { return a.friendshipLevel == b.friendshipLevel; }), villagers.end());
 
 
-// Shuffle the list of villagers
-//    shuffle(villagers.begin(), villagers.end(), default_random_engine());
 
 // helper
 int add_age(int sum, const Goat& goat)
@@ -214,5 +219,12 @@ bool too_old(const Goat& g)
 {
     return g.get_age() > MAX_AGE;
 }
+
+bool same_name(const Goat& a, const Goat& b)
+{
+    return a.get_name == b.get_name;
+}
+
+//[](const Villager& a, const Villager& b) { return a.friendshipLevel == b.friendshipLevel; }
 
 
