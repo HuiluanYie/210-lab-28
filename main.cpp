@@ -28,7 +28,7 @@ void unique_name(list<Goat>&);
 int add_age(int, const Goat&);
 Goat year_older(Goat);
 bool too_old(const Goat&); 
-
+bool same_name(const Goat&, const Goat&);
 
 int main() {
     srand(time(0));
@@ -91,7 +91,7 @@ int main() {
                 year_later(trip);
                 break;
             case 8:
-                
+                unique_name(trip);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -111,7 +111,7 @@ int main_menu() {
     cout << "[5] Reverse goat order\n";
     cout << "[6] Find goat average age\n";
     cout << "[7] Increase all goat's age\n";
-    cout << "[8] \n";
+    cout << "[8] Remove the Goat with duplicated name\n";
     cout << "[9] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -196,6 +196,7 @@ void year_later(list<Goat>& trip)
 void unique_name(list<Goat>& trip)
 {
     trip.erase(unique(trip.begin(), trip.end(), same_name), trip.end());
+    cout << "No more duplicate name";
 }
 // Remove duplicate friendship levels (assuming sorted)
 //    villagers.erase(unique(villagers.begin(), villagers.end(), 
@@ -222,7 +223,7 @@ bool too_old(const Goat& g)
 
 bool same_name(const Goat& a, const Goat& b)
 {
-    return a.get_name == b.get_name;
+    return a.get_name() == b.get_name();
 }
 
 //[](const Villager& a, const Villager& b) { return a.friendshipLevel == b.friendshipLevel; }
