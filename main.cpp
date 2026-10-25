@@ -1,3 +1,5 @@
+// COMSC-210 | Lab 28 | Huiluan Yie
+
 #include <iostream>
 #include <fstream>
 #include <iomanip>
@@ -8,6 +10,7 @@ using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25;
 
+// Function prototype
 int select_goat(list<Goat> trip);
 void delete_goat(list<Goat> &trip);
 void add_goat(list<Goat> &trip, string [], string []);
@@ -15,7 +18,9 @@ void display_trip(list<Goat> trip);
 int main_menu();
 void sort_goats(list<Goat>&);
 void reverse_goats(list<Goat>&);
-void find_goat(const list<Goat>&);
+
+// helper function
+
 
 int main() {
     srand(time(0));
@@ -71,8 +76,7 @@ int main() {
                 reverse_goats(trip);
                 break;
             case 6:
-                cout << "Finding goat by name.\n";
-                find_goat(trip);
+                
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -102,6 +106,7 @@ int main_menu() {
     return choice;
 }
 
+// function definition
 void delete_goat(list<Goat> &trip) {
     cout << "DELETE A GOAT\n";
     int index = select_goat(trip);
@@ -155,4 +160,5 @@ void reverse_goats(list<Goat>& trip)
     reverse(trip.begin(), trip.end());
     cout << "The goat order was reversed.\n";
 }
+
 
