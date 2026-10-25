@@ -64,7 +64,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 10) {
+    while (sel != 11) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -106,6 +106,9 @@ int main() {
                     cout << "There's no adult in this trip.\n";
                 }
                 break;
+            case 10:
+                
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -126,11 +129,12 @@ int main_menu() {
     cout << "[7] Increase all goat's age\n";
     cout << "[8] Remove the Goat with duplicated name\n";
     cout << "[9] Check if there's adult\n";
-    cout << "[10] Quit\n";
+    cout << "[10] Copy trip to backup\n";
+    cout << "[11] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 10) {
+    while (choice < 1 || choice > 11) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -217,6 +221,14 @@ bool any_adults(const list<Goat>& trip)
 {
     return any_of(trip.begin(), trip.end(), is_adult);
 }
+
+void copy_trip(const list<Goat>& trip, list<Goat>& backup)
+{
+    
+}
+
+//vector<int> vec2(5);
+//copy(scores.begin(), scores.end(), vec2.begin());
 
 // helper
 int add_age(int sum, const Goat& goat)
