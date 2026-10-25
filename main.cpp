@@ -20,11 +20,11 @@ int main_menu();
 void sort_goats(list<Goat>&);
 void reverse_goats(list<Goat>&);
 double average_age(const list<Goat>&);
-void transform_ages(list<Goat>&);
+void year_later(list<Goat>&);
 
 // helper function
 int add_age(int, const Goat&);
-int year_older(Goat);
+Goat year_older(Goat);
 
 
 int main() {
@@ -85,7 +85,7 @@ int main() {
                 cout << "Average goat age: " << average_age(trip) << '\n';
                 break;
             case 7:
-                
+                year_later(trip);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -178,7 +178,7 @@ double average_age(const list<Goat>& trip)
     return total / s;
 }
 
-void transform_ages(list<Goat>& trip)
+void year_later(list<Goat>& trip)
 {
     transform(trip.begin(), trip.end(), trip.begin(), year_older);
     cout << "\nEvery goat aged one year.\n";
@@ -190,10 +190,15 @@ int add_age(int sum, const Goat& goat)
     return sum + goat.get_age();
 }
 
-int year_older(Goat goat)
+Goat year_older(Goat goat)
 {
-    return goat.get_age() + 1;
+    if (goat.get_age() < MAX_AGE)
+    {
+        goat.set_age(goat.get_age() + 1);
+    }
+    return goat;
 }
 
-// [](int n) { return n - 1; }
 
+// transform(villagers.begin(), villagers.end(), villagers.begin(), [](Villager& v) { v.friendshipLevel += 1; return v; });
+// [](Villager& v) { v.friendshipLevel += 1; return v; }
