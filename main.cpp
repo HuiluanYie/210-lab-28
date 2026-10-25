@@ -97,7 +97,7 @@ int main_menu() {
     cout << "[3] List goats\n";
     cout << "[4] Sort goats by name\n";
     cout << "[5] Reverse goat order\n";
-    cout << "[6] Find goat by name\n";
+    cout << "[6] Find goat average age\n";
     cout << "[7] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -172,7 +172,7 @@ double average_age(const list<Goat>& trip)
 }
 
 // helper
-int add_age(int sum, const Goat& goat) //?
+int add_age(int sum, const Goat& goat)
 {
     return sum + goat.get_age();
 }
