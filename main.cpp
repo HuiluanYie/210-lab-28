@@ -5,6 +5,7 @@
 #include <iomanip>
 #include <list>
 #include <algorithm>
+#include <numeric>
 #include "Goat.h"
 using namespace std;
 
@@ -18,8 +19,10 @@ void display_trip(list<Goat> trip);
 int main_menu();
 void sort_goats(list<Goat>&);
 void reverse_goats(list<Goat>&);
+double average_age(const list<Goat>&);
 
 // helper function
+int add_age(int, const Goat&);
 
 int main() {
     srand(time(0));
@@ -75,7 +78,8 @@ int main() {
                 reverse_goats(trip);
                 break;
             case 6:
-                
+                cout << fixed << setprecision(1);
+                cout << "Average goat age: " << average_age(trip) << '\n';
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -160,4 +164,15 @@ void reverse_goats(list<Goat>& trip)
     cout << "The goat order was reversed.\n";
 }
 
+double average_age(const list<Goat>& trip)
+{
+    int total = accumulate(trip.begin(), trip.end(), 0, add_age);
+    double s = trip.size();
+    return total / s;
+}
 
+// helper
+int add_age(int sum, const Goat& goat) //?
+{
+    return sum + goat.get_age();
+}
