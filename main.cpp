@@ -6,6 +6,7 @@
 #include <list>
 #include <algorithm>
 #include <numeric>
+#include <random>
 #include "Goat.h"
 using namespace std;
 
@@ -21,6 +22,7 @@ void sort_goats(list<Goat>&);
 void reverse_goats(list<Goat>&);
 double average_age(const list<Goat>&);
 void year_later(list<Goat>&);
+void shuffle_trip(list<Goat> trip);
 
 // helper function
 int add_age(int, const Goat&);
@@ -59,7 +61,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 8) {
+    while (sel != 9) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -88,6 +90,9 @@ int main() {
             case 7:
                 year_later(trip);
                 break;
+            case 8:
+                year_later(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -106,11 +111,12 @@ int main_menu() {
     cout << "[5] Reverse goat order\n";
     cout << "[6] Find goat average age\n";
     cout << "[7] Increase all goat's age\n";
-    cout << "[8] Quit\n";
+    cout << "[8] \n";
+    cout << "[9] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 8) {
+    while (choice < 1 || choice > 9) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -186,6 +192,11 @@ void year_later(list<Goat>& trip)
     trip.erase(remove_if(trip.begin(), trip.end(), too_old), trip.end());
     cout << "Removed any goat that's too old.\n";
 }
+
+
+
+// Shuffle the list of villagers
+//    shuffle(villagers.begin(), villagers.end(), default_random_engine());
 
 // helper
 int add_age(int sum, const Goat& goat)
