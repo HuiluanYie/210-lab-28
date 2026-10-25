@@ -66,7 +66,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 11) {
+    while (sel != 13) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -113,6 +113,20 @@ int main() {
                 backup = copy_trip(trip);
                 display_trip(backup);
                 break;
+            case 11:
+                if (backup.empty())
+                {
+                    cout << "There's no backup.\n";
+                }
+                else
+                {
+                    display_trip(backup);
+                }
+                break;
+            case 12:
+                trip.clear();
+                cout << "Trip cleared, size now " << trip.size() << endl;
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -134,11 +148,13 @@ int main_menu() {
     cout << "[8] Remove the Goat with duplicated name\n";
     cout << "[9] Check if there's adult\n";
     cout << "[10] Copy trip to backup\n";
-    cout << "[11] Quit\n";
+    cout << "[11] Display the backuped trip\n";
+    cout << "[12] Clear trip\n";
+    cout << "[13] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 11) {
+    while (choice < 1 || choice > 13) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
