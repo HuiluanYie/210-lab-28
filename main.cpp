@@ -15,6 +15,7 @@ void display_trip(list<Goat> trip);
 int main_menu();
 void sort_goats(list<Goat>&);
 void reverse_goats(list<Goat>&);
+void find_goat(const list<Goat>&);
 
 int main() {
     srand(time(0));
@@ -47,7 +48,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 6) {
+    while (sel != 7) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -69,6 +70,10 @@ int main() {
                 cout << "Reversing goat data.\n";
                 reverse_goats(trip);
                 break;
+            case 6:
+                cout << "Finding goat by name.\n";
+                find_goat(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -85,11 +90,12 @@ int main_menu() {
     cout << "[3] List goats\n";
     cout << "[4] Sort goats by name\n";
     cout << "[5] Reverse goat order\n";
-    cout << "[6] Quit\n";
+    cout << "[6] Find goat by name\n";
+    cout << "[7] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 6) {
+    while (choice < 1 || choice > 7) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -148,4 +154,13 @@ void reverse_goats(list<Goat>& trip)
 {
     reverse(trip.begin(), trip.end());
     cout << "The goat order was reversed.\n";
+}
+
+void find_goat(const list<Goat>& trip)
+{
+    string name;
+    cout << "Enter the goat's name: ";
+    cin >> name;
+
+    find
 }
