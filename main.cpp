@@ -97,7 +97,14 @@ int main() {
                 unique_name(trip);
                 break;
             case 9:
-                unique_name(trip);
+                if (any_adults(trip))
+                {
+                    cout << "There's adult in this trip.\n";
+                }
+                else
+                {
+                    cout << "There's no adult in this trip.\n";
+                }
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -118,7 +125,7 @@ int main_menu() {
     cout << "[6] Find goat average age\n";
     cout << "[7] Increase all goat's age\n";
     cout << "[8] Remove the Goat with duplicated name\n";
-    cout << "[9] Quit\n";
+    cout << "[9] Check if there's adult\n";
     cout << "[10] Quit\n";
     cout << "Choice --> ";
     int choice;
@@ -211,10 +218,6 @@ bool any_adults(const list<Goat>& trip)
     return any_of(trip.begin(), trip.end(), is_adult);
 }
 
-// Check if any villager has a max friendship level of 10
-//    bool hasMaxFriend = any_of(villagers.begin(), villagers.end(), [](const Villager& v){ return v.friendshipLevel == 10; });
-//    cout << "Is there a villager with max friendship? " << (hasMaxFriend ? "Yes" : "No") << endl << endl;
-
 // helper
 int add_age(int sum, const Goat& goat)
 {
@@ -241,5 +244,3 @@ bool is_adult(const Goat& g)
 {
     return g.get_age() >= ADULT_AGE;
 }
-
-//[](const Villager& v){  }
