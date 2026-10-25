@@ -21,7 +21,6 @@ void reverse_goats(list<Goat>&);
 
 // helper function
 
-
 int main() {
     srand(time(0));
     bool again;
