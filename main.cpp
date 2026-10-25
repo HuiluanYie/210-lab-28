@@ -11,6 +11,7 @@
 using namespace std;
 
 const int SZ_NAMES = 200, SZ_COLORS = 25;
+const int ADULT_AGE = 10;
 
 // Function prototype
 int select_goat(list<Goat> trip);
@@ -23,12 +24,14 @@ void reverse_goats(list<Goat>&);
 double average_age(const list<Goat>&);
 void year_later(list<Goat>&);
 void unique_name(list<Goat>&);
+bool any_adults(const list<Goat>&);
 
 // helper function
 int add_age(int, const Goat&);
 Goat year_older(Goat);
 bool too_old(const Goat&); 
 bool same_name(const Goat&, const Goat&);
+bool is_adult(const Goat&);
 
 int main() {
     srand(time(0));
@@ -61,7 +64,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 9) {
+    while (sel != 10) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -93,6 +96,9 @@ int main() {
             case 8:
                 unique_name(trip);
                 break;
+            case 9:
+                unique_name(trip);
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -113,10 +119,11 @@ int main_menu() {
     cout << "[7] Increase all goat's age\n";
     cout << "[8] Remove the Goat with duplicated name\n";
     cout << "[9] Quit\n";
+    cout << "[10] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 9) {
+    while (choice < 1 || choice > 10) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -199,6 +206,15 @@ void unique_name(list<Goat>& trip)
     cout << "No more duplicate name.\n";
 }
 
+bool any_adults(const list<Goat>& trip)
+{
+    return any_of(trip.begin(), trip.end(), is_adult);
+}
+
+// Check if any villager has a max friendship level of 10
+//    bool hasMaxFriend = any_of(villagers.begin(), villagers.end(), [](const Villager& v){ return v.friendshipLevel == 10; });
+//    cout << "Is there a villager with max friendship? " << (hasMaxFriend ? "Yes" : "No") << endl << endl;
+
 // helper
 int add_age(int sum, const Goat& goat)
 {
@@ -220,3 +236,10 @@ bool same_name(const Goat& a, const Goat& b)
 {
     return a.get_name() == b.get_name();
 }
+
+bool is_adult(const Goat& g)
+{
+    return g.get_age() >= ADULT_AGE;
+}
+
+//[](const Villager& v){  }
