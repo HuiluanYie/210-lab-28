@@ -25,6 +25,7 @@ double average_age(const list<Goat>&);
 void year_later(list<Goat>&);
 void unique_name(list<Goat>&);
 bool any_adults(const list<Goat>&);
+list<Goat> copy_trip(const list<Goat>&);
 
 // helper function
 int add_age(int, const Goat&);
@@ -36,6 +37,7 @@ bool is_adult(const Goat&);
 int main() {
     srand(time(0));
     bool again;
+    list<Goat> backup = {};
 
     // read & populate arrays for names and colors
     ifstream fin("names.txt");
@@ -107,7 +109,9 @@ int main() {
                 }
                 break;
             case 10:
-                
+                cout << "The backuped trip:\n";
+                backup = copy_trip(trip);
+                display_trip(backup);
                 break;
             default:
                 cout << "Invalid selection.\n";
@@ -222,13 +226,12 @@ bool any_adults(const list<Goat>& trip)
     return any_of(trip.begin(), trip.end(), is_adult);
 }
 
-void copy_trip(const list<Goat>& trip, list<Goat>& backup)
+list<Goat> copy_trip(const list<Goat>& trip)
 {
-    
+    list<Goat> backup(trip.size());
+    copy(trip.begin(), trip.end(), backup.begin());
+    return backup;
 }
-
-//vector<int> vec2(5);
-//copy(scores.begin(), scores.end(), vec2.begin());
 
 // helper
 int add_age(int sum, const Goat& goat)
