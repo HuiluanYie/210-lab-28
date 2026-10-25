@@ -20,9 +20,12 @@ int main_menu();
 void sort_goats(list<Goat>&);
 void reverse_goats(list<Goat>&);
 double average_age(const list<Goat>&);
+void transform_ages(list<Goat>&);
 
 // helper function
 int add_age(int, const Goat&);
+int year_older(Goat);
+
 
 int main() {
     srand(time(0));
@@ -55,7 +58,7 @@ int main() {
     
     // Goat Manager 3001 Engine
     int sel = main_menu();
-    while (sel != 7) {
+    while (sel != 8) {
         switch (sel) {
             case 1:
                 cout << "Adding a goat.\n";
@@ -81,6 +84,9 @@ int main() {
                 cout << fixed << setprecision(1);
                 cout << "Average goat age: " << average_age(trip) << '\n';
                 break;
+            case 7:
+                
+                break;
             default:
                 cout << "Invalid selection.\n";
                 break;
@@ -98,11 +104,12 @@ int main_menu() {
     cout << "[4] Sort goats by name\n";
     cout << "[5] Reverse goat order\n";
     cout << "[6] Find goat average age\n";
-    cout << "[7] Quit\n";
+    cout << "[7] Increase all goat's age\n";
+    cout << "[8] Quit\n";
     cout << "Choice --> ";
     int choice;
     cin >> choice;
-    while (choice < 1 || choice > 7) {
+    while (choice < 1 || choice > 8) {
         cout << "Invalid, again --> ";
         cin >> choice;
     }
@@ -171,8 +178,22 @@ double average_age(const list<Goat>& trip)
     return total / s;
 }
 
+void transform_ages(list<Goat>& trip)
+{
+    transform(trip.begin(), trip.end(), trip.begin(), year_older);
+    cout << "\nEvery goat aged one year.\n";
+}
+
 // helper
 int add_age(int sum, const Goat& goat)
 {
     return sum + goat.get_age();
 }
+
+int year_older(Goat goat)
+{
+    return goat.get_age() + 1;
+}
+
+// [](int n) { return n - 1; }
+
