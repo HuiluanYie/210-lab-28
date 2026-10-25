@@ -156,11 +156,3 @@ void reverse_goats(list<Goat>& trip)
     cout << "The goat order was reversed.\n";
 }
 
-void find_goat(const list<Goat>& trip)
-{
-    string name;
-    cout << "Enter the goat's name: ";
-    cin >> name;
-
-    find
-}
